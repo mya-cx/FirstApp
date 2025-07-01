@@ -15,14 +15,12 @@ class childApp(BoxLayout):
         self.padding = [50, 50, 50, 50]
         self.spacing = 20
         
-        # Set background color
         with self.canvas.before:
-            Color(0.95, 0.95, 0.98, 1)  # Light blue-gray background
+            Color(0.95, 0.95, 0.98, 1) 
             self.rect = Rectangle(size=self.size, pos=self.pos)
         
         self.bind(size=self._update_rect, pos=self._update_rect)
         
-        # Title
         title = Label(
             text='Student Information Form',
             font_size='24sp',
@@ -33,7 +31,6 @@ class childApp(BoxLayout):
         )
         self.add_widget(title)
         
-        # Create form layout
         form_layout = GridLayout(
             cols=2,
             row_default_height='50dp',
@@ -43,7 +40,6 @@ class childApp(BoxLayout):
         )
         form_layout.bind(minimum_height=form_layout.setter('height'))
         
-        # Student Name
         name_label = Label(
             text='Student Name:',
             font_size='16sp',
@@ -64,7 +60,6 @@ class childApp(BoxLayout):
         )
         form_layout.add_widget(self.s_name)
         
-        # Student Marks
         marks_label = Label(
             text='Student Marks:',
             font_size='16sp',
@@ -82,11 +77,10 @@ class childApp(BoxLayout):
             foreground_color=(0.2, 0.2, 0.2, 1),
             cursor_color=(0.2, 0.3, 0.6, 1),
             padding=[10, 10, 10, 10],
-            input_filter='int'  # Only allow integers
+            input_filter='int'  
         )
         form_layout.add_widget(self.s_marks)
 
-        # Student Gender
         gender_label = Label(
             text='Student Gender:',
             font_size='16sp',
@@ -109,10 +103,8 @@ class childApp(BoxLayout):
         
         self.add_widget(form_layout)
         
-        # Add some space
         self.add_widget(Widget(size_hint_y=None, height='30dp'))
         
-        # Submit button
         self.press = Button(
             text='Submit Information',
             font_size='18sp',
@@ -125,7 +117,6 @@ class childApp(BoxLayout):
         self.press.bind(on_press=self.click_me)
         self.add_widget(self.press)
         
-        # Result display area
         self.result_label = Label(
             text='',
             font_size='14sp',
@@ -147,7 +138,7 @@ class childApp(BoxLayout):
         
         if not name or not marks or not gender:
             self.result_label.text = "Please fill in all fields!"
-            self.result_label.color = (0.8, 0.2, 0.2, 1)  # Red color for error
+            self.result_label.color = (0.8, 0.2, 0.2, 1)  
         else:
             result_text = f"""
 Student Information Submitted Successfully!
@@ -157,10 +148,9 @@ Marks: {marks}
 Gender: {gender}
             """
             self.result_label.text = result_text.strip()
-            self.result_label.color = (0.2, 0.5, 0.2, 1)  # Green color for success
+            self.result_label.color = (0.2, 0.5, 0.2, 1)  
             self.result_label.text_size = (400, None)
             
-            # Also print to console
             print(f"Name of Student is: {name}")
             print(f"Marks of Student is: {marks}")
             print(f"Gender of Student is: {gender}")
